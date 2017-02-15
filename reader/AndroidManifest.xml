@@ -1,0 +1,379 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.jayqqaa12.reader"
+    android:installLocation="auto"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="17" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 以下为可选权限 -->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="com.android.browser.permission.READ_HISTORY_BOOKMARKS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <!-- 个推SDK权限配置开始 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="getui.permission.GetuiService" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <!-- 可选权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <!-- 自定义权限 -->
+    <permission
+        android:name="getui.permission.GetuiService"
+        android:protectionLevel="normal" >
+    </permission>
+
+    <application
+        android:name="com.jayqqaa12.reader.App"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@android:style/Theme.NoTitleBar" >
+        <activity
+            android:name="com.jayqqaa12.reader.ui.MainActivity_"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.jayqqaa12.reader.ui.view.dialog.DeleteBookDialog_"
+            android:theme="@style/MyDialogStyleBottom" />
+        <activity
+            android:name="com.jayqqaa12.reader.ui.TocActivity_"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+
+        <!-- file manage -->
+        <activity
+            android:name="com.jayqqaa12.reader.ui.FileActivity_"
+            android:screenOrientation="portrait" >
+        </activity>
+
+        <!-- fb activity -->
+
+        <activity
+            android:name="org.geometerplus.android.fbreader.TOCActivity_"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+        <activity
+            android:name="org.geometerplus.android.fbreader.error.BookReadingErrorActivity"
+            android:process=":error"
+            android:theme="@style/android:Theme.Dialog" >
+            <intent-filter>
+                <action android:name="android.fbreader.action.ERROR" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="BookReadingException" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".error.BugReportActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="FBReader crash"
+            android:process=":crash"
+            android:theme="@style/android:Theme" />
+        <activity
+            android:name="org.geometerplus.android.fbreader.crash.FixBooksDirectoryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:process=":crash"
+            android:theme="@style/android:Theme.Dialog" >
+            <intent-filter>
+                <action android:name="android.fbreader.action.CRASH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="CachedCharStorageException" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="org.geometerplus.android.fbreader.crash.MissingNativeLibraryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:process=":crash"
+            android:theme="@style/android:Theme.Dialog" >
+            <intent-filter>
+                <action android:name="android.fbreader.action.CRASH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="ExceptionInInitializerError" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.fbreader.action.CRASH" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="UnsatisfiedLinkError" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="org.geometerplus.android.fbreader.api.ApiService"
+            android:launchMode="singleTask" >
+            <intent-filter>
+                <action android:name="android.fbreader.action.API" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="org.geometerplus.android.fbreader.FBReader_"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:icon="@drawable/icon"
+            android:launchMode="singleTask"
+            android:theme="@style/android:Theme" >
+            <intent-filter>
+                <action android:name="android.fbreader.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.fbreader.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="file" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:scheme="fbreader-action" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host=""
+                    android:scheme="file" />
+                <data android:pathPattern=".*\\.epub" />
+                <data android:pathPattern=".*\\.oeb" />
+                <data android:pathPattern=".*\\.fb2" />
+                <data android:pathPattern=".*\\.fb2\\.zip" />
+                <data android:pathPattern=".*\\.mobi" />
+                <data android:pathPattern=".*\\.prc" />
+                <data android:pathPattern=".*\\.txt" />
+                <data android:pathPattern=".*\\.rtf" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host=""
+                    android:mimeType="text/plain"
+                    android:scheme="file" />
+                <data android:pathPattern=".*\\.epub" />
+                <data android:pathPattern=".*\\.oeb" />
+                <data android:pathPattern=".*\\.fb2" />
+                <data android:pathPattern=".*\\.mobi" />
+                <data android:pathPattern=".*\\.prc" />
+                <data android:pathPattern=".*\\.txt" />
+                <data android:pathPattern=".*\\.rtf" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:pathPattern=".*\\.fb2"
+                    android:scheme="content" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host=""
+                    android:scheme="file" />
+                <data android:mimeType="application/epub+zip" />
+                <data android:mimeType="application/x-pilot-prc" />
+                <data android:mimeType="application/x-mobipocket-ebook" />
+                <data android:mimeType="application/x-fictionbook+xml" />
+                <data android:mimeType="application/x-fictionbook" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
+        <activity
+            android:name="org.geometerplus.android.fbreader.CancelActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/android:Theme.Dialog" />
+        <activity
+            android:name="org.geometerplus.android.fbreader.PluginListActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/android:Theme.Dialog" />
+        <activity
+            android:name="org.geometerplus.android.fbreader.image.ImageViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:process=":imageView"
+            android:theme="@style/android:Theme" />
+
+        <service
+            android:name="org.geometerplus.android.fbreader.libraryService.LibraryService"
+            android:launchMode="singleTask"
+            android:process=":libraryService" >
+            <intent-filter>
+                <action android:name="android.fbreader.action.LIBRARY_SERVICE" />
+            </intent-filter>
+        </service>
+
+        <activity
+            android:name="org.geometerplus.android.fbreader.preferences.PreferenceActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:theme="@style/android:Theme" />
+        <activity
+            android:name="org.geometerplus.android.fbreader.OpenDictionaryActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
+
+        <!-- 个推SDK配置开始 -->
+        <!-- 配置的第三方参数属性 -->
+        <meta-data
+            android:name="PUSH_APPID"
+            android:value="pQPwZEULwJ7BEBaj22LlC" />
+        <meta-data
+            android:name="PUSH_APPKEY"
+            android:value="TFC5cq9yJu97K8jPr61aU" />
+        <meta-data
+            android:name="PUSH_APPSECRET"
+            android:value="UB4yJUdxU26cMoAuTlKLz5" />
+        <meta-data
+            android:name="PUSH_GROUPID"
+            android:value="" />
+
+        <!-- 配置第三方Receiver -->
+        <receiver
+            android:name="com.jayqqaa12.reader.receiver.PushReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.pQPwZEULwJ7BEBaj22LlC" />
+            </intent-filter>
+        </receiver>
+
+        <!-- 配置SDK核心服务 -->
+        <service
+            android:label="NotifyCenterAIDL"
+            android:name="com.igexin.sdk.PushService"
+            android:exported="true"
+            android:process="com.reader.pushservice" >
+        </service>
+
+        <receiver android:name="com.igexin.sdk.PushReceiver" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="com.igexin.sdk.action.refreshls" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.igexin.sdk.PushReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="com.igexin.sdk.action.pushmanager" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.igexin.sdk.PushActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process="com.reader.pushservice"
+            android:taskAffinity="com.igexin.sdk.PushActivityTask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
+        </activity>
+
+        <!-- ================================下载器模块================================ -->
+        <service
+            android:label="DownloadService"
+            android:name="com.igexin.download.DownloadService"
+            android:process="com.reader.pushservice" />
+
+        <receiver
+            android:name="com.igexin.download.DownloadReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="com.igexin.download.DownloadProvider"
+            android:authorities="downloads.com.jayqqaa12.reader"
+            android:process="com.reader.pushservice" />
+
+        <activity
+            android:name="com.igexin.getuiext.activity.GetuiExtActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:process="com.reader.pushservice"
+            android:taskAffinity="android.task.myServicetask"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <receiver
+            android:name="com.igexin.getuiext.service.PayloadReceiver"
+            android:exported="false" >
+            <intent-filter>
+                <!-- 这个com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4固定，不能修改 -->
+                <action android:name="com.igexin.sdk.action.7fjUl2Z3LH6xYy7NQK4ni4" />
+                <!-- android:name="com.igexin.sdk.action.第三方的appId" -->
+                <action android:name="com.igexin.sdk.action.pQPwZEULwJ7BEBaj22LlC" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:label="NotifyCenter"
+            android:name="com.igexin.getuiext.service.GetuiExtService"
+            android:process="com.reader.pushservice" />
+        <!-- =========================================================================== -->
+
+
+        <!-- 个推SDK配置结束 -->
+
+    </application>
+
+</manifest>

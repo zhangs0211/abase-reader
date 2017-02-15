@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    
+     <color name="textcolor">#ffc9c9c9</color>
+    <color name="black_shade">#ff515151</color>
+    
+    <color name="white">#ffffffff</color>
+    <color name="green">#ff98E532</color>
+    <color name="brown">#ff00ff21</color>
+    <color name="oranage">#ffFF7200</color>
+    
+    
+    <color name="black">#030303</color>
+    <color name="light_blue">#1C86EE</color>
+    <color name="textview_bg">#FFFAFA</color>
+    
+ 
+    
+
+</resources>
